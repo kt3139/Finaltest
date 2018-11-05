@@ -61,7 +61,7 @@ int printnode(){
    printf("6.트리삭제\n");
    printf("7.종료\n");
    scanf("%d", &i);
-   return i;
+   return i; //원하는 숫자 항목을 입력받아 그입력받은 숫자를 리턴시켜서 메인 함수로보냄
 }
   
 Tree *createnode(){
