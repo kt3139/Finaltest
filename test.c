@@ -29,6 +29,25 @@ void insertnode(Tree *, char *);    //트리에 값 설정
 void levelorder(Tree *);            //현재 트리를 레벨단위로 출력
 
 int main(){
+  Tree *T;  //트리변수 생성
+  DATA *data; //이중링크로 사용할 변수 생성
+  
+  int s; //s : switch 사용을 위한 변수
+  
+  while(1){
+    s=printnode();  //메뉴를 출력하고 상요자가 선택한 값을 얻음
+    switch(s){
+         case 1:
+            for(i=0;i<(sizeof(pos)/sizeof(*pos));i++){
+               createfile(&ifp,pos[i]);
+               insertnode(T,pos[i]);
+            }
+            printf("개방 성공\n");
+            levelorder(T);
+            printf("\n");
+          break;
+    }
+  }
   return 0;
 }
 
