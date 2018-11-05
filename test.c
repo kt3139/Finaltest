@@ -23,6 +23,10 @@ typedef struct list{
 Tree *createnode();   //트리 노드 생성
 DATA *createnode1();  //이중원형 링크 생성
 int printnode();      //메뉴출력
+//case 1(직책트리생성)에 필요한 함수
+void createfile(FILE **, char *);   //변수에 저장된 값으로 파일생성
+void insertnode(Tree *, char *);    //트리에 값 설정
+void levelorder(Tree *);            //현재 트리를 레벨단위로 출력
 
 int main(){
   return 0;
@@ -54,3 +58,109 @@ DATA *createnode1(){
    strcpy(p->name," ");
    return p;
 }
+
+//case 1
+void createfile(FILE **ifp,char *data){
+    char str[20];
+    
+    strcpy(str,data);
+    strcat(str,".txt");
+    *ifp=fopen(str,"w");
+    if(ifp==NULL){
+       printf("개방 실패\n");
+    }
+    fclose(*ifp);     
+}
+
+void insertnode(Tree *T, char *data){
+   Tree *q;
+   q=createnode();
+   strcpy(q->data,data);
+
+   if(strcmp(data,"")==0){
+      printf("no value\n");
+      return; 
+   }
+
+   if(strcmp(T->data,"")==0){
+      strcpy(T->data,data);
+   }
+   else if(strcmp(T->data,data)<0){
+      if(T->right==NULL){
+         T->right=q;
+         return;
+      }
+      insertnode(T->right,data);
+   }
+   else if(strcmp(T->data,data)>0){
+      if(T->left==NULL){
+         T->left=q;
+         return;
+      }
+      insertnode(T->left,data);
+   }
+}
+
+void levelorder(Tree *T){
+   int count=0;
+   int count1=1;
+   int z=1, si=1;
+   int i=1,sc=0,j;
+   Tree **ap;
+   Tree *t;
+
+   t=(Tree *)calloc(1,sizeof(Tree));
+   ap=(Tree **)calloc(1,sizeof(Tree *));
+   ap[0]=(Tree *)calloc(1,sizeof(Tree*));
+   while(1){
+      z=z*2;
+      ap=(Tree **)realloc(ap,(z)*sizeof(Tree *));
+      if(count == 0){
+         ap[count+1]=T;
+         if((T->right==NULL)&&(T->left==NULL)){break;}
+         count++;
+      }
+      else{
+         for(i=1;i<=count1;i++){
+            if(ap[count]->left==NULL){
+               ap[count*2]=t;
+            }
+            else{
+               ap[count*2]=ap[count]->left;
+            }
+            if(ap[count]->right==NULL){
+              ap[(count*2+1)]=t;
+            }
+            else{
+               ap[(count*2+1)]=ap[count]->right;
+            }
+            count++;
+         }
+         count1=count1*2;
+      }
+      for(i=si;i<z;i++){
+         if((ap[i]->right!=NULL) ||( ap[i]->left!=NULL)){
+            sc++;
+            break;
+         }
+      }
+      if(sc==0){
+         break;
+      }
+      sc=0;
+      si=z;
+   }
+   i=1;
+   j=1;
+   sc=1;
+   while(i<=z){
+      printf("Lv.%d ", sc);
+      for(j;j<=i;j++){
+         printf("%s ", ap[j]->data);
+      }
+      printf("\n");
+      i=i*2+1;
+      sc++;
+   }
+}
+
