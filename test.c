@@ -27,3 +27,30 @@ int printnode();      //메뉴출력
 int main(){
   return 0;
 }
+
+int printnode(){
+   int i;
+   printf("1.직책트리 생성\n");  //파일생성 
+   printf("2.사원등록\n");       //직책별 파일 기록
+   printf("3.사원수정\n");
+   printf("4.사원삭제\n");
+   printf("5.사원조회\n");
+   printf("6.트리삭제\n");
+   printf("7.종료\n");
+   scanf("%d", &i);
+   return i;
+}
+  
+Tree *createnode(){
+    Tree *p;
+    p=(Tree *)calloc(1,sizeof(Tree));
+    p->inside=createnode1();
+    return p;
+}
+
+DATA *createnode1(){
+   DATA *p;
+   p=(DATA *)calloc(1,sizeof(DATA));
+   strcpy(p->name," ");
+   return p;
+}
