@@ -38,6 +38,8 @@ void deletesearch(Tree *,char *);  //delete서치
 //case 3
 void inquirysearch(Tree *, char *);
 void inquiryprint(Tree *, char *);
+//case 4
+void deletesearch(Tree *,char *);
 
 int main(){
   Tree *T;
