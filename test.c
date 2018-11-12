@@ -40,6 +40,8 @@ void inquirysearch(Tree *, char *);
 void inquiryprint(Tree *, char *);
 //case 4
 void deletesearch(Tree *,char *);
+void deletenode(Tree *, char *);
+void Tdeletenode(Tree *, char *);
 
 int main(){
   Tree *T;
@@ -82,6 +84,51 @@ int main(){
             else{
                printf("번호중복\n");
             }
+            printsearch(T);
+         break;
+        case 3:
+            if(strcmp(T->data,"")==0){
+               printf("트리 없음\n");
+               break;
+            }
+            printf("수정 할 사원 번호 : ");
+            __fpurge(stdin);
+            scanf("%s", sea);
+            same=samesearch(T, sea);
+            if(same!=1){
+               printf("사원 번호 오류\n");
+            }
+            else{
+               deletesearch(T,sea);
+               while(1){
+                  printf("*****  수정  *****\n");
+                  data=createnode1();
+                  data=pinsert();
+                  same1=samesearch(T, data->num);
+                  if(same1!=1){
+                    Tsearch(T,data);
+                    printf("수정완료\n");
+                    break; 
+                  }
+                  else{
+                     printf("번호 중복\n");
+                     printsearch(T);
+                  }
+               }
+               searchfile(T, ifp);
+            }
+         break;
+
+         case 4:
+            if(strcmp(T->data,"")==0){
+               printf("트리 없음\n");
+               break;
+            }
+            printf("지울 사원 번호 : ");
+            __fpurge(stdin);
+            scanf("%s", sea);
+            deletesearch(T,sea);
+            searchfile(T,ifp);
             printsearch(T);
          break;
     }
@@ -385,3 +432,31 @@ void deletesearch(Tree *T,char *data){
       deletesearch(T->right,data);
    }
 } 
+void deletenode(Tree *T, char *data){
+   Tree *p;
+   DATA *q;
+
+   if(T->inside->rlink!=NULL){
+      p=T;
+      q=p->inside;
+      do{
+         q=q->rlink;
+         if(strcmp(q->num,data)==0){
+            if(q->rlink==q->rlink->rlink){
+               p->inside->rlink=NULL;
+            }
+            else if(p->inside->rlink==q){
+               p->inside->rlink=q->rlink;
+               q->rlink->llink=q->llink;
+               q->llink->rlink=q->rlink;
+            }
+            else{
+              q->rlink->llink=q->llink;
+              q->llink->rlink=q->rlink;
+            }
+            free(q);
+            break;
+         }
+      }while(q->rlink!=p->inside->rlink);
+   }
+}
