@@ -34,7 +34,6 @@ int samesearch(Tree *T,char *);     //전체 노드에 checknode를 이용하여
 void Tsearch(Tree *, DATA *);       //입력한 데이터에서 직책데이터와 같은 노드를 찾고 addsearch와 insearch를 이용하여 이중원형링크 연걸
 void addsearch(Tree *, DATA *);     //Tsearch에서 정렬을 하기 위한 함수
 void insearch(Tree *, DATA *);      //Tsearch에서 정렬을 하기 위한 함수
-void deletesearch(Tree *,char *);  //delete서치
 //case 3
 void inquirysearch(Tree *, char *);
 void inquiryprint(Tree *, char *);
