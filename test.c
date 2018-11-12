@@ -28,12 +28,12 @@ void createfile(FILE **, char *);   //변수에 저장된 값으로 파일생성
 void insertnode(Tree *, char *);    //트리에 값 설정
 void levelorder(Tree *);            //현재 트리를 레벨단위로 출력
 //case 2 사원등록에 필요한 함수
-DATA *pinsert();
-int checknode(Tree *T,char *);
-int samesearch(Tree *T,char *);
-void Tsearch(Tree *, DATA *);
-void addsearch(Tree *, DATA *);
-void insearch(Tree *, DATA *);
+DATA *pinsert();                    //사원등록시 필요한 데이터를 입력받음
+int checknode(Tree *T,char *);      //이중 원형링크 내에 중복검사
+int samesearch(Tree *T,char *);     //전체 노드에 checknode를 이용하여 중복검사
+void Tsearch(Tree *, DATA *);       //입력한 데이터에서 직책데이터와 같은 노드를 찾고 addsearch와 insearch를 이용하여 이중원형링크 연걸
+void addsearch(Tree *, DATA *);     //Tsearch에서 정렬을 하기 위한 함수
+void insearch(Tree *, DATA *);      //Tsearch에서 정렬을 하기 위한 함수
 
 int main(){
   Tree *T;
@@ -258,7 +258,6 @@ int samesearch(Tree *T,char *data){
    }
 }
 
-//오류 날 가능성 많음
 void Tsearch(Tree *T, DATA *data){
     Tree *p;
     DATA *q, *r;
