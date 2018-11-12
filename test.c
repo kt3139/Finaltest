@@ -35,7 +35,9 @@ void Tsearch(Tree *, DATA *);       //입력한 데이터에서 직책데이터�
 void addsearch(Tree *, DATA *);     //Tsearch에서 정렬을 하기 위한 함수
 void insearch(Tree *, DATA *);      //Tsearch에서 정렬을 하기 위한 함수
 void deletesearch(Tree *,char *);  //delete서치
-
+//case 3
+void inquirysearch(Tree *, char *);
+void inquiryprint(Tree *, char *);
 
 int main(){
   Tree *T;
