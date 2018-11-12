@@ -166,33 +166,7 @@ void levelorder(Tree *T){
    ap=(Tree **)calloc(1,sizeof(Tree *));
    ap[0]=(Tree *)calloc(1,sizeof(Tree*));
    while(1){
-      z=z*2;void inquirysearch(Tree *T, char *data){
-   if(T){
-      inquiryprint(T,data);
-      inquirysearch(T->left,data);
-      inquirysearch(T->right,data);
-   }
-}
-void inquiryprint(Tree *T, char *data){
-   Tree *p;
-   DATA *q;
-   char nam[4];
-   int i;
-   if(T->inside->rlink!=NULL){
-      p=T;
-      q=p->inside;
-      do{
-         q=q->rlink;
-         for(i=0;i<3;i++){
-            nam[i]=q->name[i];
-         }
-         nam[i]='\0';
-         if(strcmp(nam,data)==0){
-            printf("%s %s %s %s\n", q->name, q->num, q->cls, q->cas);
-         }
-      }while(q->rlink!=p->inside->rlink);
-   }
-}
+      z=z*2;
       ap=(Tree **)realloc(ap,(z)*sizeof(Tree *));
       if(count == 0){
          ap[count+1]=T;
