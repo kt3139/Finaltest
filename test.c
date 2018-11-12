@@ -399,3 +399,17 @@ void inquiryprint(Tree *T, char *data){
 }
 
 
+
+void deletesearch(Tree *,char *); 
+
+ 
+
+ 
+
+void deletesearch(Tree *T,char *data){
+   if(T){
+      deletenode(T, data);
+      deletesearch(T->left,data);
+      deletesearch(T->right,data);
+   }
+} 
