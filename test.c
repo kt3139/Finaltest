@@ -138,7 +138,44 @@ int main(){
             searchfile(T,ifp);
             printsearch(T);
          break;
+         case 5:
+            printf("***** 조회 *****\n");
+            if(strcmp(T->data,"")==0){
+               printf("트리 없음\n");
+               break;
+            }
+            printf("성을 입력하세요 ");
+            __fpurge(stdin);
+            gets(nam);
+            inquirysearch(T,nam);
+         break;
+         case 6:
+            if(strcmp(T->data,"")==0){
+              printf("트리 없음 \n");
+            }
+            else{
+               printf("제거할 직책 트리 : ");
+               __fpurge(stdin);
+               scanf("%s", posi);
+               count1=countnode(T,posi);
+               if(count1>0){
+                  printf("트리제거 불가\n");
+               }
+               else{
+                  printf("트리제거 완료\n");
+                  Tdeletenode(T,posi);
+               }
+            } 
+            levelorder(T);
+            printf("\n");
+         break;
+         case 7:
+         break;
+         default:
+           printf("키가 없음\n");
+           break;
     }
+    if(s==7)break;
   }
   return 0;
 }
