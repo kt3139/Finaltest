@@ -505,6 +505,152 @@ void deletenode(Tree *T, char *data){
    }
 }
 
+void Tdeletenode(Tree *T, char *data){
+Tree *p, *q, *r, *z;
+   p=T;
+   r=p;
+
+   if(strcmp(T->data,data)==0 && T->right==NULL && T->left==NULL){
+       strcpy(T->data,"");
+   }
+   else{
+      while(p){
+         if(strcmp(p->data,data)==0){
+            if(p->right==NULL && p->left==NULL){
+               if(strcmp(r->data,data)>0){
+                  r->left=NULL;
+                  free(p);
+                  break;
+               }
+               else{
+                  r->right=NULL;
+                  free(p);
+                  break;
+               }
+            }    
+            else if(p->right==NULL){
+               if(p==T){
+                  p=p->left;
+                  strcpy(T->data,p->data);
+                  T->left=p->left;
+                  T->right=p->right;
+                  free(p);
+                  break;
+               }
+               else if(strcmp(r->data,data)>0){
+                   r->left=p->left;
+                   free(p);
+                   break;
+               }
+               else{
+                   r->right=p->left;
+                   free(p);
+                   break;
+               }  
+            }
+            else if(p->left==NULL){
+               if(p==T){
+                  p=p->right;
+                  strcpy(T->data,p->data);
+                  T->right=p->right;
+                  T->left=p->left;
+                  free(p); 
+                  break;
+               }
+               else if(strcmp(r->data,data)>0){
+                  r->left=p->right;
+                  free(p);
+                  break;
+               }
+               else{
+                 r->right=p->right;
+                 free(p);
+                 break;
+               }
+            }
+            else{
+               if(p==T){
+                 p=p->right;
+                 if(p->left==NULL){
+                    strcpy(T->data,p->data);
+                    T->right=p->right;
+                    free(p);
+                    break;
+                 }
+                 else{
+                    while(p->left!=NULL){
+                       q=p;
+                       p=p->left; 
+                    }
+                    q->left=p->left;
+                    strcpy(T->data,p->data);
+                    free(p); 
+                    break;
+                 } 
+               }
+               else if(strcmp(r->data,data)>0){
+                  z=p->right;
+                  q=z;
+                  if(z->left==NULL){
+                     z->left=p->left;
+                     r->left=z;
+                     free(p);
+                     break;
+                  }
+                  else{
+                     while(z->left!=NULL){
+                        q=z;
+                        z=z->left;
+                     }
+                     q->left=z->left;
+                     z->right=p->right;
+                     z->left=p->left;
+                     r->left=z;
+                     free(p);
+                     break; 
+                  }
+               }
+               else{
+                 z=p->right;
+                 q=z;
+                 if(z->left==NULL){
+                     z->left=p->left;
+                     r->right=z;
+                     free(p);
+                 }
+                 else{
+                    while(z->left!=NULL){
+                       q=z;
+                       z=z->left;
+                    }
+                    q->left=z->left;
+                    z->right=p->right;
+                    z->left=p->left;
+                    r->right=z;
+                    free(p);
+                    break;
+                 }
+               }
+            }
+         }
+         else if(strcmp(p->data,data)>0){
+            r=p;
+            p=p->left;
+         }
+         else if(strcmp(p->data,data)<0){
+            r=p;
+            p=p->right;
+         }
+         else{
+            printf("no value\n");
+            break;
+         }
+      }
+   }
+
+}
+
+
 int countnode(Tree *T, char *data){
    Tree *p;
    int tf=0;
