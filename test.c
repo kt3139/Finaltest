@@ -41,6 +41,14 @@ void inquiryprint(Tree *, char *);
 void deletesearch(Tree *,char *);
 void deletenode(Tree *, char *);
 void Tdeletenode(Tree *, char *);
+//case 6
+int countnode(Tree *, char *);
+int searchcount(Tree *,char *);
+//open 여러 기능에서 사용하는 함수.
+void searchfile(Tree *, FILE *);
+void insertfile(Tree *, FILE *);
+void printsearch(Tree *); 
+void printnode1(Tree *);
 
 int main(){
   Tree *T;
@@ -459,3 +467,112 @@ void deletenode(Tree *T, char *data){
       }while(q->rlink!=p->inside->rlink);
    }
 }
+
+int countnode(Tree *T, char *data){
+   Tree *p;
+   int tf=0;
+   p=T;
+  
+   if(strcmp(p->data,"")==0){
+      printf("no value\n");
+   }
+   else{
+      while(1){
+         if(strcmp(p->data,data)==0){
+            tf=searchcount(p,data);
+            break;
+         }
+         else if(strcmp(p->data,data)<0){
+            if(p->right==NULL){
+               break;
+            }
+            p=p->right;
+         }
+         else if(strcmp(p->data,data)>0){
+            if(p->left==NULL){
+               break;
+            }
+            p=p->left;
+         }
+      }
+   }
+   return tf;
+} 
+int searchcount(Tree *T, char *data){
+   Tree *p;
+   DATA *q;
+
+   p=T;
+   q=p->inside;
+   if(q->rlink!=NULL){
+      do{
+         q=q->rlink;
+         if(strcmp(q->num,"")!=0){return 1;}
+      }while(p->inside->rlink!=q->rlink);
+   }
+   return 0;
+}
+//open
+void searchfile(Tree *T, FILE *ifp){
+   if(T){
+      insertfile(T,ifp);
+      searchfile(T->left, ifp);
+      searchfile(T->right, ifp);
+   }
+}
+void insertfile(Tree *T, FILE *ifp){
+   Tree *p;
+   DATA *q, *r;
+   char str[20];
+  
+   p=T;
+   if(strcmp(p->data,"")==0){
+      printf("no value\n");
+   }
+   else{
+      p=T;
+      q=p->inside;
+      strcpy(str,p->data);
+      strcat(str,".txt");
+      ifp=fopen(str,"w");
+      if(ifp==NULL){
+         printf("출력 파일 개방 실패.\n");
+         return ;
+      }
+      if(T->inside->rlink!=NULL){
+         if(q->rlink!=NULL){
+            printf("입력\n");
+            do{
+               q=q->rlink;
+               fprintf(ifp,"%s %s %s %s\n",q->name, q->num, q->cls, q->cas);
+            }while(q->rlink!=p->inside->rlink);
+         }
+      }
+      fclose(ifp);
+   }
+}
+
+void printsearch(Tree *T){
+   if(T){
+      printnode1(T);
+      printsearch(T->left);
+      printsearch(T->right);
+   }
+}
+
+void printnode1(Tree *T){
+   Tree *p;
+   DATA *q;
+
+   p=T;
+   q=p->inside;
+   printf("%s = ", T->data);
+   if(p->inside->rlink!=NULL){
+      do{
+         q=q->rlink; 
+         printf("*%s*", q->num);
+      }while(q->rlink!=p->inside->rlink);  
+   }
+   printf("\n");
+}
+
