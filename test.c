@@ -61,7 +61,7 @@ int main(){
   int count1; // count잘못 가져왔을 가능성 있음.
   char nam[3]={};
   char posi[20];
-  
+  T=createnode();  
   while(1){
     s=printnode();  //메뉴를 출력하고 상요자가 선택한 값을 얻음
     switch(s){
