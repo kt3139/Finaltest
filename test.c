@@ -35,20 +35,20 @@ void Tsearch(Tree *, DATA *);       //입력한 데이터에서 직책데이터�
 void addsearch(Tree *, DATA *);     //Tsearch에서 정렬을 하기 위한 함수
 void insearch(Tree *, DATA *);      //Tsearch에서 정렬을 하기 위한 함수
 //case 3
-void inquirysearch(Tree *, char *);
-void inquiryprint(Tree *, char *);
+void inquirysearch(Tree *, char *); //inquirysearch를 이용하여 노드에 해당 사원 데이터가 있는지 찾아 출력하는 함수
+void inquiryprint(Tree *, char *);  //해당 노드 내에 사용자가 찾는 사원 정보를 찾아 출력하는 함수
 //case 4
-void deletesearch(Tree *,char *);
-void deletenode(Tree *, char *);
-void Tdeletenode(Tree *, char *);
+void deletesearch(Tree *,char *);   //deletesearch를 이용하여 노드에 해당 사원 데이터가 있는지 찾아 제거하는 함수
+void deletenode(Tree *, char *);    //해당 노드 내에 사용자가 찾는 사원정보를 제거하는 함수
+void Tdeletenode(Tree *, char *);   //트리에 생성된 노드를 삭제하는 함수
 //case 6
-int countnode(Tree *, char *);
-int searchcount(Tree *,char *);
+int countnode(Tree *, char *);      //searchcount를 이용하여 노드를 옮겨가며 삭제하려는 노드에 사원정보가 있는지 판별하는 함수
+int searchcount(Tree *,char *);     //해당 노드 내에 사원정보가 있는지 판별하는 함수
 //open 여러 기능에서 사용하는 함수.
-void searchfile(Tree *, FILE *);
-void insertfile(Tree *, FILE *);
-void printsearch(Tree *); 
-void printnode1(Tree *);
+void searchfile(Tree *, FILE *);    //insertfile를 이용하여 노드를 옮기며 노드이름과 같은 파일에 사원정보를 저장하는 함수
+void insertfile(Tree *, FILE *);    //파일에 사원정보를 저장하는 함수
+void printsearch(Tree *);           //printnode1를 이용하여 노드를 옮겨가며 해당 노드 내에 사원정보를 출력하는 함수
+void printnode1(Tree *);            //해당 노드 내에 사원정보를 
 
 int main(){
   Tree *T;
