@@ -208,7 +208,7 @@ DATA *createnode1(){
 }
 
 //case 1
-void createfile(FILE **ifp,char *data){ //사원 파일이 업승ㄹ시 해당 사원파일 생성
+void createfile(FILE **ifp,char *data){ //트리에 존재하는 노드의 이름으로 
     char str[20];
     
     strcpy(str,data);
@@ -220,7 +220,7 @@ void createfile(FILE **ifp,char *data){ //사원 파일이 업승ㄹ시 해당 �
     fclose(*ifp);     
 }
 
-void insertnode(Tree *T, char *data){ //사원트리에 데이터를 가져와 
+void insertnode(Tree *T, char *data){
    Tree *q;
    q=createnode();
    strcpy(q->data,data);
