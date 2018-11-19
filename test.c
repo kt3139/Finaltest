@@ -193,7 +193,7 @@ int printnode(){
    return i; //원하는 숫자 항목을 입력받아 그입력받은 숫자를 리턴시켜서 메인 함수로보냄
 }
   
-Tree *createnode(){
+Tree *createnode(){ //트리 노드생성
     Tree *p;
     p=(Tree *)calloc(1,sizeof(Tree));
     p->inside=createnode1();
@@ -208,7 +208,7 @@ DATA *createnode1(){
 }
 
 //case 1
-void createfile(FILE **ifp,char *data){
+void createfile(FILE **ifp,char *data){ //사원 파일이 업승ㄹ시 해당 사원파일 생성
     char str[20];
     
     strcpy(str,data);
@@ -220,7 +220,7 @@ void createfile(FILE **ifp,char *data){
     fclose(*ifp);     
 }
 
-void insertnode(Tree *T, char *data){
+void insertnode(Tree *T, char *data){ //사원트리에 데이터를 가져와 
    Tree *q;
    q=createnode();
    strcpy(q->data,data);
